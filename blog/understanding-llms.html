@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Large Language Models for Code Migration - Sivajeet Chand</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #fcf9f2;
+            --text-color: #222222;
+            --heading-color: #825d0c;
+            --link-color: #825d0c;
+            --border-color: #825d0c;
+            --light-border: #e8dfc8;
+            --secondary-text: #555555;
+            --code-bg: #f5f2e9;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1410;
+            --text-color: #fcf9f2;
+            --heading-color: #d4a960;
+            --link-color: #d4a960;
+            --border-color: #d4a960;
+            --light-border: #3d2f1a;
+            --secondary-text: #c9c3b8;
+            --code-bg: #2a2318;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: var(--bg-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.6rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background: var(--light-border);
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--secondary-text);
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--link-color);
+        }
+
+        /* Article Header */
+        .article-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            color: var(--secondary-text);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-tags {
+            margin-top: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--light-border);
+            color: var(--heading-color);
+            padding: 0.3rem 0.8rem;
+            margin-right: 0.5rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+
+        /* Article Content */
+        .article-content {
+            margin-bottom: 3rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--heading-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            color: var(--heading-color);
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.2rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content blockquote {
+            border-left: 3px solid var(--border-color);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            color: var(--secondary-text);
+            font-style: italic;
+        }
+
+        .article-content code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .article-content pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        /* Footer */
+        .article-footer {
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-border);
+            color: var(--secondary-text);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <!-- Back Link -->
+    <a href="../index.html" class="back-link">← Back to Home</a>
+
+    <!-- Article Header -->
+    <article>
+        <header class="article-header">
+            <h1>Understanding Large Language Models for Code Migration</h1>
+            <div class="article-meta">
+                <span>March 15, 2025</span> • 
+                <span>8 min read</span> • 
+                <span>by Sivajeet Chand</span>
+            </div>
+            <div class="article-tags">
+                <span class="tag">LLMs</span>
+                <span class="tag">Code Migration</span>
+                <span class="tag">Software Modernization</span>
+            </div>
+        </header>
+
+        <!-- Article Content -->
+        <div class="article-content">
+            <p>
+                Large Language Models (LLMs) have emerged as a transformative force in software engineering, 
+                particularly in the domain of code migration and modernization. As organizations grapple with 
+                legacy systems and the need to adopt modern technologies, LLMs offer promising solutions that 
+                were previously unattainable.
+            </p>
+
+            <h2>The Challenge of Code Migration</h2>
+            
+            <p>
+                Code migration has traditionally been a labor-intensive process requiring deep expertise in both 
+                source and target languages or frameworks. Organizations often face significant challenges including:
+            </p>
+
+            <ul>
+                <li>High costs associated with manual refactoring and translation</li>
+                <li>Risk of introducing bugs during the migration process</li>
+                <li>Loss of institutional knowledge embedded in legacy codebases</li>
+                <li>Time constraints that delay necessary modernization efforts</li>
+            </ul>
+
+            <h2>How LLMs Are Changing the Game</h2>
+
+            <p>
+                Recent advances in LLMs like GPT-4, Claude, and specialized code models have demonstrated 
+                remarkable capabilities in understanding and generating code. These models can:
+            </p>
+
+            <h3>1. Contextual Understanding</h3>
+            
+            <p>
+                Unlike traditional rule-based translation tools, LLMs can understand the semantic meaning and 
+                intent behind code. This allows them to produce more idiomatic translations that follow best 
+                practices in the target language or framework.
+            </p>
+
+            <h3>2. Pattern Recognition</h3>
+            
+            <p>
+                LLMs excel at recognizing design patterns and architectural structures within code. This 
+                capability is crucial for maintaining the logical integrity of applications during migration.
+            </p>
+
+            <blockquote>
+                "The ability of LLMs to recognize and preserve design patterns during code translation 
+                represents a significant leap forward in automated software modernization."
+            </blockquote>
+
+            <h3>3. Documentation Generation</h3>
+            
+            <p>
+                One often-overlooked benefit of LLM-assisted migration is the automatic generation of 
+                documentation that explains the translation decisions and highlights areas requiring human review.
+            </p>
+
+            <h2>Current Limitations and Challenges</h2>
+
+            <p>
+                Despite their promise, LLMs for code migration face several important challenges:
+            </p>
+
+            <ol>
+                <li><strong>Hallucinations:</strong> LLMs may generate plausible-looking but incorrect code</li>
+                <li><strong>Context Window Limitations:</strong> Large codebases may exceed model context limits</li>
+                <li><strong>Framework-Specific Nuances:</strong> Deep framework knowledge may be inconsistent</li>
+                <li><strong>Testing and Validation:</strong> Automated verification of migrated code remains crucial</li>
+            </ol>
+
+            <h2>The Path Forward</h2>
+
+            <p>
+                The future of LLM-assisted code migration lies in hybrid approaches that combine the strengths 
+                of automated tools with human expertise. Key areas of development include:
+            </p>
+
+            <ul>
+                <li>Fine-tuning models on domain-specific codebases</li>
+                <li>Developing robust testing frameworks for migrated code</li>
+                <li>Creating interactive tools that allow developers to guide the migration process</li>
+                <li>Building knowledge bases that capture migration patterns and best practices</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+
+            <p>
+                Large Language Models represent a paradigm shift in how we approach code migration and 
+                modernization. While challenges remain, the potential for reducing costs, accelerating 
+                timelines, and improving quality is substantial. As research continues and models improve, 
+                we can expect LLM-assisted migration to become an increasingly integral part of the software 
+                engineering toolkit.
+            </p>
+
+            <p>
+                The key to success will be understanding both the capabilities and limitations of these tools, 
+                and designing workflows that leverage their strengths while mitigating their weaknesses through 
+                human oversight and robust validation processes.
+            </p>
+        </div>
+
+        <!-- Article Footer -->
+        <footer class="article-footer">
+            <p>
+                <strong>About the Author:</strong> Sivajeet Chand is a PhD researcher at the Technical 
+                University of Munich, focusing on Generative AI for code migration and modernization.
+            </p>
+            <p style="margin-top: 1rem;">
+                <a href="../index.html">← Back to Home</a>
+            </p>
+        </footer>
+    </article>
+
+    <script>
+        // Dark mode toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const themeIcon = document.getElementById('theme-icon');
+            
+            html.setAttribute('data-theme', newTheme);
+            
+            if (newTheme === 'dark') {
+                themeIcon.textContent = '☀️';
+            } else {
+                themeIcon.textContent = '🌙';
+            }
+        }
+    </script>
+</body>
+</html>

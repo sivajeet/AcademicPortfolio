@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sivajeet Chand</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #fcf9f2;
+            --text-color: #222222;
+            --heading-color: #825d0c;
+            --link-color: #825d0c;
+            --border-color: #825d0c;
+            --light-border: #e8dfc8;
+            --secondary-text: #555555;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1410;
+            --text-color: #fcf9f2;
+            --heading-color: #d4a960;
+            --link-color: #d4a960;
+            --border-color: #d4a960;
+            --light-border: #3d2f1a;
+            --secondary-text: #c9c3b8;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--bg-color);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.6rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background: var(--light-border);
+        }
+
+        /* Header */
+        header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .profile-image {
+            flex-shrink: 0;
+            width: 152px;
+            height: 152px;
+            border: 2px solid var(--border-color);
+            background: var(--light-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-text);
+            font-size: 0.85rem;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--heading-color);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--secondary-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-links {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-top: 1rem;
+        }
+
+        .contact-links a {
+            margin-right: 1rem;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: var(--heading-color);
+            margin-bottom: 1.2rem;
+            font-weight: 400;
+            border-bottom: 1px solid var(--light-border);
+            padding-bottom: 0.3rem;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            color: var(--heading-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Publications - Georgia/Chicago Style */
+        .pub-item {
+            margin-bottom: 1.5rem;
+            text-indent: -1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .pub-authors {
+            color: var(--text-color);
+        }
+
+        .pub-title {
+            color: var(--text-color);
+        }
+
+        .pub-venue {
+            color: var(--text-color);
+        }
+
+        /* Teaching & Thesis */
+        .teaching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .teaching-table td {
+            padding: 0.5rem 0;
+            vertical-align: top;
+        }
+
+        .teaching-table td:first-child {
+            width: 30%;
+            color: var(--secondary-text);
+        }
+
+        .thesis-list {
+            margin-left: 1.5rem;
+        }
+
+        .thesis-item {
+            margin-bottom: 0.8rem;
+            list-style-type: decimal;
+        }
+
+        .thesis-type {
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+        }
+
+        /* Presentations */
+        .pres-item {
+            margin-bottom: 1.2rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pres-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--heading-color);
+        }
+
+        .pres-title {
+            color: var(--heading-color);
+            font-weight: 400;
+        }
+
+        .pres-details {
+            color: var(--secondary-text);
+            font-size: 0.95rem;
+        }
+
+        .watch-link {
+            display: inline-block;
+            margin-top: 0.3rem;
+            color: var(--link-color);
+            font-size: 0.9rem;
+        }
+
+        /* News */
+        .news-item {
+            margin-bottom: 1rem;
+        }
+
+        .news-date {
+            color: var(--heading-color);
+            font-weight: 400;
+            margin-right: 0.5rem;
+        }
+
+        /* Blogs */
+        .blog-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-border);
+        }
+
+        .blog-item:last-child {
+            border-bottom: none;
+        }
+
+        .blog-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .blog-title a {
+            color: var(--heading-color);
+            font-weight: 400;
+        }
+
+        .blog-title a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-meta {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-excerpt {
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--light-border);
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile-image {
+                margin-bottom: 1rem;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 0.4rem 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .teaching-table td:first-child {
+                width: 100%;
+                display: block;
+                padding-bottom: 0.2rem;
+            }
+
+            .teaching-table td:last-child {
+                display: block;
+                padding-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <!-- Header -->
+    <header>
+        <div class="profile-image">
+            <img src="myimage.png" alt="Photo of Sivajeet Chand">
+        </div>
+        <div class="header-content">
+            <h1>Sivajeet Chand</h1>
+            <div class="subtitle">PhD Researcher, Technical University of Munich</div>
+            <div class="subtitle">Chair of Software & Systems Engineering</div>
+            <div class="contact-links">
+                <a href="mailto:sivajeet.chand@tum.de">sivajeet.chand@tum.de</a> |
+                <a href="https://scholar.google.com/citations?user=lOAQn_UAAAAJ&hl=en" target="_blank">Google Scholar</a> |
+                <a href="https://www.linkedin.com/in/sivajeetchand/" target="_blank">LinkedIn</a> |
+                <a href="https://github.com/sivajeet" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section id="about">
+        <h2>About</h2>
+        <p>
+          In July 2024, I started my PhD at the 
+          <a href="https://www.cs.cit.tum.de/sse/startseite/" target="_blank" rel="noopener noreferrer">
+            Chair of Software and Systems Engineering
+          </a> 
+          under the supervision of 
+          <a href="https://www.cs.cit.tum.de/en/sse/people/alexander-pretschner/" target="_blank" rel="noopener noreferrer">
+            Prof. Dr. Alexander Pretschner
+          </a> 
+          at the 
+          <a href="https://www.tum.de/en" target="_blank" rel="noopener noreferrer">
+            Technical University of Munich
+          </a>.
+          My research focuses on exploring the potential of 
+          <a href="https://en.wikipedia.org/wiki/Generative_artificial_intelligence" target="_blank" rel="noopener noreferrer">
+            Generative AI
+          </a>, particularly 
+          <a href="https://en.wikipedia.org/wiki/Large_language_model" target="_blank" rel="noopener noreferrer">
+            Large Language Models (LLMs)
+          </a>, for code migration and modernization.
+        </p>
+        
+        <p>
+          I hold a master's degree in Software Engineering and Technology from 
+          <a href="https://www.chalmers.se/en/" target="_blank" rel="noopener noreferrer">
+            Chalmers University of Technology, Sweden
+          </a>. 
+          Prior to starting at the chair, I was employed as a Data Engineer at 
+          <a href="https://www.volvogroup.com/en/" target="_blank" rel="noopener noreferrer">
+            Volvo Group
+          </a>. 
+          Additionally, I have gained experience as a student engineer at 
+          <a href="https://www.aptiv.com/" target="_blank" rel="noopener noreferrer">
+            Aptiv
+          </a> 
+          and 
+          <a href="https://goodsolutions.se/" target="_blank" rel="noopener noreferrer">
+            Good Solutions
+          </a>.
+        </p>
+      </section>
+
+    <!-- News -->
+    <section id="news">
+        <h2>News</h2>
+
+        <div class="news-item">
+            <span class="news-date">November 2025:</span> Presented at AIware'25 on Extract Method Refactoring.
+        </div>
+        <div class="news-item">
+            <span class="news-date">September 2025:</span> Paper titled "Automated Extract Method Refactoring with Open-Source LLMs: A Comparative Study" got accepted for publication in AIware'25.
+        </div>
+        <div class="news-item">
+            <span class="news-date">January 2025:</span> Paper published in <i>Empirical Software Engineering</i> journal on design pattern recognition using large language models.
+        </div>
+        <div class="news-item">
+            <span class="news-date">July 2024:</span> Started PhD research at TUM focusing on Generative AI for code migration and modernization.
+        </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+        <h2>Publications</h2>
+        
+        <h3>Journal Publications</h3>
+        
+        <div class="pub-item">
+            <strong>[EMSE]</strong> Sushant Kumar Pandey, Sivajeet Chand, Jennifer Horkoff, Miroslaw Staron, Miroslaw Ochodek, and Darko Durisic. <a href="https://doi.org/10.1007/s10664-025-10625-1" target="_blank">"Design pattern recognition: a study of large language models."</a> <i>Empirical Software Engineering</i> 30, 69 (2025). DOI: 10.1007/s10664-025-10625-1
+        </div>
+
+        <h3>Conference Proceedings</h3>
+
+        <div class="pub-item">
+            <strong>[AIware'25]</strong> Sivajeet Chand, Melih Kilic, Roland Wuersching, Sushant Kumar Pandey, Alexander Pretschner. <a href="https://arxiv.org/abs/2510.26480" target="_blank">"Automated Extract Method Refactoring with Open-Source LLMs: A Comparative Study"</a> In <i>AIware 2025: Proceedings of the 2nd ACM International Conference on AI-Powered Software.</i>
+        </div>
+
+        <div class="pub-item">
+            <strong>[RE'24]</strong> Sivajeet Chand, Chang Li, CM Montes, B Cabrero-Daniel, J Horkoff. <a href="https://ieeexplore.ieee.org/abstract/document/10628111" target="_blank">"Automating Requirements Review in the Automotive Sector: A Tailored AI Approach."</a> In <i>2024 IEEE 32nd International Requirements Engineering Conference (RE)</i>, 492-493. DOI: 10.1109/RE59750.2024.00059
+        </div>
+
+        <div class="pub-item">
+            <strong>[PROMISE'24]</strong> Sivajeet Chand, Sushant Kumar Pandey, Jennifer Horkoff, Miroslaw Staron, Miroslaw Ochodek, and Darko Durisic. <a href="https://dl.acm.org/doi/pdf/10.1145/3617555.3617873" target="_blank">"Comparing Word-Based and AST-Based Models for Design Pattern Recognition."</a> In <i>Proceedings of the 19th International Conference on Predictive Models and Data Analytics in Software Engineering (PROMISE)</i>, 44-48, 2023. DOI: 10.1145/3617555.3617873
+        </div>
+
+        <div class="pub-item">
+            <strong>[PROFES'24]</strong> Sushant Kumar Pandey, Sivajeet Chand, Jennifer Horkoff, and Miroslaw Staron. <a href="https://link.springer.com/chapter/10.1007/978-3-031-49266-2_21" target="_blank">"Design Patterns Understanding and Use in the Automotive Industry: An Interview Study."</a> In <i>International Conference on Product-Focused Software Process Improvement (PROFES)</i>, 301-319, 2023. DOI: 10.1007/978-3-031-49266-2_21
+        </div>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching">
+        <h2>Teaching</h2>
+        <table class="teaching-table">
+            <tr>
+                <td>Winter Semester 2025/26</td>
+                <td>Seminar: AI in Assisting Software Development (IN0014, IN2107)</td>
+            </tr>
+            <tr>
+                <td>Summer Semester 2025</td>
+                <td>Requirements Engineering</td>
+            </tr>
+            <tr>
+                <td>Summer Semester 2025</td>
+                <td>Requirements Engineering (Elite Graduate program)</td>
+            </tr>
+        </table>
+
+        <h3>Thesis Supervision</h3>
+        
+        <p>Ongoing / Assigned</p>
+        <ol class="thesis-list">
+            <li class="thesis-item">Evaluating Agentic AI for Legacy Software Interactions. <span class="thesis-type">(Master's Thesis)</span></li>
+            <li class="thesis-item">Evaluating LLMs for Framework Migration. <span class="thesis-type">(Bachelor's Thesis)</span></li>
+        </ol>
+
+        <p>Completed</p>
+        <ol class="thesis-list">
+            <li class="thesis-item">Empirical evaluation of LLMs for translating C/C++ code to Rust. <span class="thesis-type">(Master's Thesis)</span></li>
+            <li class="thesis-item">Systematic Literature Review on Code Migration using LLMs. <span class="thesis-type">(Master's Thesis)</span></li>
+            <li class="thesis-item">Evaluating and Improving the Effectiveness of an AI-assisted tutoring system. <span class="thesis-type">(Master's Thesis)</span></li>
+            <li class="thesis-item">Improving the Efficiency of an AI-assisted tutoring system. <span class="thesis-type">(Master's Thesis)</span></li>
+            <li class="thesis-item">Comparative Analysis of Large Language Models for Automated Code Refactoring. <span class="thesis-type">(Master's Thesis)</span></li>
+        </ol>
+    </section>
+
+    <!-- Presentations -->
+    <section id="presentations">
+        <h2>Presentations</h2>
+        
+        <div class="pres-item">
+            <div class="pres-title">Automated Extract Method Refactoring with Open-Source LLMs</div>
+            <div class="pres-details">AIware, November 2024</div>
+            <a href="https://drive.google.com/file/d/1Tw3O8Wr-zMUBuqEjBxAGYBWg2UrhhyWI/view?usp=drive_link" class="watch-link" target="_blank">[Watch Recording]</a>
+        </div>
+    </section>
+
+    <!-- Blogs -->
+    <section id="blogs">
+        <h2>Blog Posts</h2>
+        <div id="blog-list">
+            <p style="color: var(--secondary-text); font-style: italic;">Loading blog posts...</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Sivajeet Chand | Technical University of Munich | Chair of Software & Systems Engineering</p>
+        <p>Boltzmannstr. 3, 85748 Garching b. München, Germany</p>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const themeIcon = document.getElementById('theme-icon');
+            
+            html.setAttribute('data-theme', newTheme);
+            
+            if (newTheme === 'dark') {
+                themeIcon.textContent = '☀️';
+            } else {
+                themeIcon.textContent = '🌙';
+            }
+        }
+
+        // Blog loading functionality
+        async function loadBlogs() {
+            const blogList = document.getElementById('blog-list');
+            
+            try {
+                // Fetch the list of blog files from the manifest
+                const response = await fetch('blog/manifest.json');
+                
+                if (!response.ok) {
+                    throw new Error('Could not load blog manifest');
+                }
+                
+                const blogs = await response.json();
+                
+                if (blogs.length === 0) {
+                    blogList.innerHTML = '<p style="color: var(--secondary-text); font-style: italic;">No blog posts available yet.</p>';
+                    return;
+                }
+                
+                // Sort blogs by date (newest first)
+                blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                // Clear loading message
+                blogList.innerHTML = '';
+                
+                // Create blog items
+                blogs.forEach(blog => {
+                    const blogItem = document.createElement('div');
+                    blogItem.className = 'blog-item';
+                    
+                    blogItem.innerHTML = `
+                        <div class="blog-title"><a href="blog/${blog.filename}">${blog.title}</a></div>
+                        <div class="blog-meta">${blog.date} • ${blog.readTime}</div>
+                        <p class="blog-excerpt">${blog.excerpt}</p>
+                    `;
+                    
+                    blogList.appendChild(blogItem);
+                });
+                
+            } catch (error) {
+                console.error('Error loading blogs:', error);
+                blogList.innerHTML = '<p style="color: var(--secondary-text); font-style: italic;">Unable to load blog posts at this time.</p>';
+            }
+        }
+
+        // Load blogs when page loads
+        document.addEventListener('DOMContentLoaded', loadBlogs);
+    </script>
+</body>
+</html>

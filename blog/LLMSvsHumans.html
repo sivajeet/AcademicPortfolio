@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLMs Are Spiky, Humans Are Smooth - Sivajeet Chand</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #fcf9f2;
+            --text-color: #222222;
+            --heading-color: #825d0c;
+            --link-color: #825d0c;
+            --border-color: #825d0c;
+            --light-border: #e8dfc8;
+            --secondary-text: #555555;
+            --code-bg: #f5f2e9;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1410;
+            --text-color: #fcf9f2;
+            --heading-color: #d4a960;
+            --link-color: #d4a960;
+            --border-color: #d4a960;
+            --light-border: #3d2f1a;
+            --secondary-text: #c9c3b8;
+            --code-bg: #2a2318;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: var(--bg-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.6rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background: var(--light-border);
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--secondary-text);
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--link-color);
+        }
+
+        /* Article Header */
+        .article-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            color: var(--secondary-text);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-tags {
+            margin-top: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--light-border);
+            color: var(--heading-color);
+            padding: 0.3rem 0.8rem;
+            margin-right: 0.5rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+
+        /* Article Content */
+        .article-content {
+            margin-bottom: 3rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--heading-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            color: var(--heading-color);
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.2rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content blockquote {
+            border-left: 3px solid var(--border-color);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            color: var(--secondary-text);
+            font-style: italic;
+        }
+
+        .article-content code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .article-content pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        /* Footer */
+        .article-footer {
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-border);
+            color: var(--secondary-text);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <!-- Back Link -->
+    <a href="../index.html" class="back-link">← Back to Home</a>
+
+    <!-- Article Header -->
+    <article>
+        <header class="article-header">
+            <h1>LLMs Are Spiky, Humans Are Smooth: Why Your AI Feels Like a Calculator With Attitude</h1>
+            <div class="article-meta">
+                <span>March 15, 2025</span> • 
+                <span>8 min read</span> • 
+                <span>by Sivajeet Chand</span>
+            </div>
+            <div class="article-tags">
+                <span class="tag">LLMs</span>
+                <span class="tag">AI</span>
+                <span class="tag">Software Engineering</span>
+            </div>
+        </header>
+
+        <!-- Article Content -->
+        <div class="article-content">
+            <p>
+                We talk a lot about how powerful Large Language Models (LLMs) are. Benchmarks, leaderboards, dramatic Twitter threads—everything suggests they’re on a straight path to becoming “better than humans.” But I think a simpler, more honest description is this: <em>LLMs are spiky, humans are smooth.</em>
+            </p>
+
+            <p>
+                When I say “spiky,” I mean that LLMs are extremely good at some tasks and surprisingly weak at others.
+                Humans, in contrast, tend to have a more “smooth” knowledge profile: we are rarely perfect, but we usually
+                have at least a basic understanding across many domains. You may not be a doctor, a lawyer, and a software engineer
+                at once, but you probably know enough to read a prescription label, skim a contract, and build a simple website
+                after a tutorial or two. We can improvise and muddle through. LLMs cannot muddle; they either look brilliant
+                or bizarrely off.
+            </p>
+
+            <h2>Spiky Intelligence vs. Smooth Intelligence</h2>
+
+            <p>
+                Imagine a graph where the x-axis is “all possible tasks in the world” and the y-axis is “how good you are
+                at that task.” A typical human has a relatively smooth curve: not very high anywhere, but above zero in many places.
+                You can reason a bit about health, a bit about law, a bit about code, and a bit about social dynamics. There are gaps,
+                but the curve is continuous.
+            </p>
+
+            <p>
+                An LLM, in contrast, looks more like a skyline. On some tasks it towers above you: summarizing long reports,
+                translating between languages, generating boilerplate code, or refactoring patterns it has seen many times before.
+                On other tasks, the curve abruptly drops to the floor. When it is good, it feels like a genius colleague.
+                When it is bad, it feels like a very confident intern who has completely misunderstood the assignment.
+            </p>
+
+            <blockquote>
+                LLMs can feel superhuman on tasks that look like their training data, and strangely incompetent 
+                on tasks that fall outside those patterns.
+            </blockquote>
+
+            <h2>A Calculator With Attitude</h2>
+
+            <p>
+                A useful analogy here is the humble calculator. A calculator is absurdly good at one thing: arithmetic. It will always beat you at computing 123,456 × 987,654. It doesn’t get bored, it doesn’t lose focus, and it doesn’t make “small mistakes.” Yet for all its precision, the calculator doesn’t tell you which equation to solve, whether the equation makes sense, or whether you’re about to use that equation to make a terrible financial decision. It’s perfect at a narrow task and clueless about the bigger picture.
+            </p>
+
+            <p>
+                LLMs are like calculators for text, but with much broader coverage. They are not good at just a single operation;
+                they are good at many: drafting emails, writing code, summarizing articles, explaining concepts, translating languages,
+                and more. However, just like the calculator, they operate within a specific space: the space of patterns they have seen
+                in their training data. That is where the spikes come from. If your task looks like “more of the same” compared to the
+                data they have learned from, they can be astonishingly strong. If it does not, performance collapses in interesting ways.
+            </p>
+
+            <h2>The Software Engineer’s View</h2>
+
+            <p>
+                You can see this clearly from the perspective of a software engineer. Suppose you want to create a basic personal website. You ask an LLM to generate a responsive portfolio page with a dark theme and a contact form. The model will almost certainly produce a reasonably good solution: clean HTML, decent CSS, maybe even a small JavaScript enhancement. It might even outperform a junior developer who is still copy–pasting from Stack Overflow. Why? Because the world is full of similar websites. The model has effectively seen thousands, perhaps millions, of variants in its training data and has learned the patterns for layout, navigation, and structure. In that space, it is not just competent—it is too good.
+            </p>
+
+            
+
+            <p>
+                But now imagine a very different question: “Is there a need for a new kind of social networking platform, and if so, what should it look like? Please invent something like Facebook before Facebook existed.” A human visionary might, with a mix of experience, intuition, and luck, notice that people want to present themselves online, that the internet is spreading, that relationships and networks are valuable, and that there is a business model to be built on top of that. They might gradually assemble these ideas into a product like Facebook.
+            </p>
+
+            <p>
+                An LLM does not do that on its own. It doesn’t wake up one morning and think, “You know what the world is missing? A global social graph plus a news feed plus an ad system. Let’s build it.” It does not generate problems by itself; it responds to prompts. It can very skillfully operate in the space of “build a social app with these features,” especially after such things already exist. But the initial spark—the realization that there should be a social network, or a new programming paradigm, or a new business model—still belongs firmly on the human side.
+            </p>
+
+            <h2>Replication vs. Creation</h2>
+
+            <p>
+                This is the heart of the replication versus creation distinction. LLMs are extraordinarily good at replication and recombination of what is already out there. If many humans have already solved a particular problem, documented it, written blog posts, created GitHub repositories, recorded videos, and argued about it online, then an LLM will likely be excellent in that domain. It’s not cheating; it’s just very efficient pattern learning. But this strength lives inside the space of what humanity has already written down. When you ask for something truly outside of that space, something that no one has ever seriously described or attempted, the model’s “intelligence” becomes far less reliable.
+            </p>
+
+            
+
+            <h2>The Crab Bucket of Bigger Models</h2>
+
+
+            <p>
+                Meanwhile, companies are racing each other to build bigger and better models. They pour more data, more compute, and more clever tricks into new generations of LLMs. I often imagine this as a “crab in the bucket” situation: each company is trying to climb a bit higher on performance benchmarks, pulling everyone else down in the race to be on top. The result is a learning curve that definitely goes up, but with diminishing returns. Going from a weak model to a decent one is a massive leap. Going from decent to strong still feels impressive. But going from strong to “perfect on all tasks humans care about” is an entirely different challenge.
+            </p>   
+            <p> 
+                The key insight is that tasks in the real world are extremely diverse. Some are pattern-heavy and well-documented; others depend on tacit knowledge, embodied experience, or genuinely novel insight. No matter how big an LLM becomes, it is unlikely to reach 100% performance on everything. The spikes grow taller and more numerous, but the curve never becomes perfectly flat or uniformly high. There will always be regions—especially those requiring truly new ideas, long-term planning, or direct interaction with the messy physical world—where human reasoning remains essential.
+            </p>
+
+            <h2>Combining Spikes and Smoothness</h2>
+
+            <p>
+                If LLMs are spiky and humans are smooth, the most rational strategy is to combine them. In software engineering, for example,
+                LLMs are ideal for generating boilerplate, translating between languages, refactoring repetitive patterns, drafting tests,
+                and accelerating documentation. These are all tasks where the relevant patterns already exist in codebases, tutorials, and forums.
+            </p>
+
+            <p>
+                Humans, on the other hand, remain responsible for deciding what to build, why it matters, how it should be structured,
+                and when to say “no” to an idea. We have the ability to notice new problems, question requirements, think about long-term
+                consequences, and invent abstractions that do not exist yet. The best workflows treat the LLM as a powerful assistant,
+                not a replacement: it amplifies what we can do, but it does not eliminate the need for human judgment.
+            </p>
+
+            <h2>Conclusion: Respect the Spikes</h2>
+
+            <p>
+                LLMs are not better humans; they are different tools. Like calculators, they crush certain tasks with speed and precision
+                we cannot match. Unlike calculators, they operate across many more domains, which sometimes makes them feel almost human.
+                But under the hood, their competence remains spiky: very high where the training data is rich and the task matches known patterns,
+                and much lower where the world demands novelty, agency, or deep real-world grounding.
+            </p>
+
+            <p>
+                Humans still pose new questions, decide what matters, and notice when something is missing in the world that no dataset has yet captured.
+                If we understand this clearly—without hype and without unnecessary fear—we can design tools, workflows, and research that use LLMs
+                where they are strongest, and keep humans in the loop where we are still uniquely capable.
+            </p>
+
+            <p>
+                And if one day an LLM independently proposes a truly new paradigm, designs it, implements it, and convinces us it is a good idea—
+                then we will have a very interesting follow-up blog post to write.
+            </p>
+        </div>
+
+        <!-- Article Footer -->
+        <footer class="article-footer">
+            <p>
+                <strong>About the Author:</strong> Sivajeet Chand is a PhD researcher at the Technical 
+                University of Munich, focusing on Generative AI for code migration and modernization.
+            </p>
+            <p style="margin-top: 1rem;">
+                <a href="../index.html">← Back to Home</a>
+            </p>
+        </footer>
+    </article>
+
+    <script>
+        // Dark mode toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const themeIcon = document.getElementById('theme-icon');
+            
+            html.setAttribute('data-theme', newTheme);
+            
+            if (newTheme === 'dark') {
+                themeIcon.textContent = '☀️';
+            } else {
+                themeIcon.textContent = '🌙';
+            }
+        }
+    </script>
+</body>
+</html>
