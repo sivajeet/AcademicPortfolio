@@ -78,8 +78,10 @@ function renderPublications(journalsData, conferencesData) {
     journalsData.forEach(pub => {
         const pubItem = document.createElement('div');
         pubItem.className = 'pub-item';
+        const rawLabel = pub.label || '';
+        const cleanLabel = rawLabel.replace(/^\[|\]$/g, '');
         pubItem.innerHTML = `
-            <strong>${escapeHtml(pub.label)}</strong> ${escapeHtml(pub.authors)}.
+            <span class="pub-venue-badge">${escapeHtml(cleanLabel)}</span> ${escapeHtml(pub.authors)}.
             <a href="${pub.link}" target="_blank" rel="noopener noreferrer">"${escapeHtml(pub.title)}"</a>
             <i>${escapeHtml(pub.venue)}</i>${pub.volume ? ` ${escapeHtml(pub.volume)}` : ''}${pub.issue ? `, ${escapeHtml(pub.issue)}` : ''}${pub.year ? ` (${escapeHtml(pub.year)})` : ''}.${pub.doi ? ` DOI: ${escapeHtml(pub.doi)}` : ''}
         `;
@@ -92,8 +94,10 @@ function renderPublications(journalsData, conferencesData) {
     sortedConferences.forEach(pub => {
         const pubItem = document.createElement('div');
         pubItem.className = 'pub-item';
+        const rawLabel = pub.label || '';
+        const cleanLabel = rawLabel.replace(/^\[|\]$/g, '');
         pubItem.innerHTML = `
-            <strong>${escapeHtml(pub.label)}</strong> ${escapeHtml(pub.authors)}.
+            <span class="pub-venue-badge">${escapeHtml(cleanLabel)}</span> ${escapeHtml(pub.authors)}.
             <a href="${pub.link}" target="_blank" rel="noopener noreferrer">"${escapeHtml(pub.title)}"</a>
             In <i>${escapeHtml(pub.venue)}</i>${pub.pages ? `, ${escapeHtml(pub.pages)}` : ''}${pub.year ? `, ${escapeHtml(pub.year)}` : ''}.${pub.doi ? ` DOI: ${escapeHtml(pub.doi)}` : ''}
         `;

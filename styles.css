@@ -5,23 +5,23 @@
 }
 
 :root {
-    --bg-color: #f5f7fb;
-    --text-color: #1d2433;
-    --heading-color: #2f4a7e;
-    --link-color: #2f4a7e;
-    --border-color: #5a77af;
-    --light-border: #d9e1f2;
-    --secondary-text: #55617a;
+    --bg-color: #fcf9f2;
+    --text-color: #222222;
+    --heading-color: #825d0c;
+    --link-color: #825d0c;
+    --border-color: #825d0c;
+    --light-border: #e8dfc8;
+    --secondary-text: #555555;
 }
 
 [data-theme="dark"] {
-    --bg-color: #101522;
-    --text-color: #edf2ff;
-    --heading-color: #9fbbff;
-    --link-color: #9fbbff;
-    --border-color: #7f9de0;
-    --light-border: #26314d;
-    --secondary-text: #b8c5e4;
+    --bg-color: #1a1410;
+    --text-color: #fcf9f2;
+    --heading-color: #d4a960;
+    --link-color: #d4a960;
+    --border-color: #d4a960;
+    --light-border: #3d2f1a;
+    --secondary-text: #c9c3b8;
 }
 
 body {
@@ -142,8 +142,6 @@ p {
 
 .pub-item {
     margin-bottom: 1.5rem;
-    text-indent: -1.5rem;
-    padding-left: 1.5rem;
 }
 
 /* Teaching & Thesis */
@@ -156,6 +154,23 @@ p {
 .teaching-table td {
     padding: 0.5rem 0;
     vertical-align: top;
+}
+
+
+.pub-venue-badge {
+    display: inline-block;
+    background: var(--light-border);
+    color: var(--heading-color);
+    padding: 0.18rem 0.7rem;
+    margin-right: 0.45rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+}
+
+[data-theme="dark"] .pub-venue-badge {
+    color: #f3f6ff;
+    background: rgba(34, 44, 68, 0.92);
+    border-color: rgba(159, 187, 255, 0.35);
 }
 
 .teaching-table td:first-child {
