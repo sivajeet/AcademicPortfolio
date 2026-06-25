@@ -1,0 +1,30 @@
+[
+    {
+        "date": "June 2026",
+        "content": "Attended and presented at EASE 2026 on DSL Code Generation with LLMs."
+    },
+    {
+        "date": "May, 2026",
+        "content": "Paper titled \"Cross-Language Semantic Clone Detection with Instruction Fine-Tuned LLMs\" accepted as a full paper for presentation at SEAA 2026 and publication in the conference proceedings."
+    },
+    {
+        "date": "April, 2026",
+        "content": "Notification of acceptance for paper on DSL Code Generation at EASE conference."
+    },
+    {
+        "date": "November 2025",
+        "content": "Presented at AIware'25 on Extract Method Refactoring."
+    },
+    {
+        "date": "September 2025",
+        "content": "Paper titled \"Automated Extract Method Refactoring with Open-Source LLMs: A Comparative Study\" got accepted for publication in AIware'25."
+    },
+    {
+        "date": "January 2025",
+        "content": "Paper published in <i>Empirical Software Engineering</i> journal on design pattern recognition using large language models."
+    },
+    {
+        "date": "July 2024",
+        "content": "Started PhD research at TUM focusing on Generative AI for code migration and modernization."
+    }
+]

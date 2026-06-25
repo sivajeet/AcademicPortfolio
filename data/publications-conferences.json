@@ -1,0 +1,58 @@
+[
+    {
+        "label": "[EASE'26]",
+        "authors": "Sivajeet Chand, Kevin Nguyen, Peter Kuntz, and Alexander Pretschner",
+        "title": "Leveraging LLMs for Multi-File DSL Code Generation: An Industrial Case Study",
+        "venue": "Proceedings of The 30th International Conference on Evaluation and Assessment in Software Engineering (EASE 2026)",
+        "year": 2026,
+        "link": "https://arxiv.org/pdf/2604.24678"
+    },
+    {
+        "label": "[PROFES'25]",
+        "authors": "Asvydyte, G., Pandey, S. K., & Chand, S.",
+        "title": "How Well Small Language Models Can Be Adapted for Software Maintenance and Refactoring Tasks",
+        "venue": "Product-Focused Software Process Improvement: 26th International Conference, PROFES 2025, Salerno, Italy, December 1–3, 2025, Proceedings",
+        "year": 2025,
+        "pages": "506-515",
+        "link": "https://doi.org/10.1007/978-3-032-12089-2_36",
+        "doi": "10.1007/978-3-032-12089-2_36"
+    },
+    {
+        "label": "[AIware'25]",
+        "authors": "Sivajeet Chand, Melih Kilic, Roland Wuersching, Sushant Kumar Pandey, Alexander Pretschner",
+        "title": "Automated Extract Method Refactoring with Open-Source LLMs: A Comparative Study",
+        "venue": "AIware 2025: Proceedings of the 2nd ACM International Conference on AI-Powered Software",
+        "year": 2025,
+        "link": "https://arxiv.org/abs/2510.26480"
+    },
+    {
+        "label": "[RE'24]",
+        "authors": "Sivajeet Chand, Chang Li, CM Montes, B Cabrero-Daniel, J Horkoff",
+        "title": "Automating Requirements Review in the Automotive Sector: A Tailored AI Approach.",
+        "venue": "2024 IEEE 32nd International Requirements Engineering Conference (RE)",
+        "year": 2024,
+        "pages": "492-493",
+        "link": "https://ieeexplore.ieee.org/abstract/document/10628111",
+        "doi": "10.1109/RE59750.2024.00059"
+    },
+    {
+        "label": "[PROMISE'24]",
+        "authors": "Sivajeet Chand, Sushant Kumar Pandey, Jennifer Horkoff, Miroslaw Staron, Miroslaw Ochodek, and Darko Durisic",
+        "title": "Comparing Word-Based and AST-Based Models for Design Pattern Recognition.",
+        "venue": "Proceedings of the 19th International Conference on Predictive Models and Data Analytics in Software Engineering (PROMISE)",
+        "year": 2023,
+        "pages": "44-48",
+        "link": "https://dl.acm.org/doi/pdf/10.1145/3617555.3617873",
+        "doi": "10.1145/3617555.3617873"
+    },
+    {
+        "label": "[PROFES'24]",
+        "authors": "Sushant Kumar Pandey, Sivajeet Chand, Jennifer Horkoff, and Miroslaw Staron",
+        "title": "Design Patterns Understanding and Use in the Automotive Industry: An Interview Study.",
+        "venue": "International Conference on Product-Focused Software Process Improvement (PROFES)",
+        "year": 2023,
+        "pages": "301-319",
+        "link": "https://link.springer.com/chapter/10.1007/978-3-031-49266-2_21",
+        "doi": "10.1007/978-3-031-49266-2_21"
+    }
+]

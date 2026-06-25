@@ -1,0 +1,59 @@
+{
+    "ongoing": [
+        {
+            "title": "Developing, Comparing and Optimizing Automated Code Migration Framework Approaches",
+            "type": "Master's Thesis"
+        },
+        {
+            "title": "Case Study on the Feasibility of LLM-Assisted Code Migration of an Enterprise Production System",
+            "type": "Bachelor's Thesis",
+            "cooperation": "Check24"
+        }
+    ],
+    "completed": [
+        {
+            "title": "Using LLMs for Java-based Framework Migration",
+            "type": "Bachelor's Thesis",
+            "year": 2026,
+            "cooperation": "4Soft"
+        },
+        {
+            "title": "Fine-Tuning a Transformer Model to Translate Natural Language into DSL",
+            "type": "Master's Thesis",
+            "year": 2026,
+            "cooperation": "BMW"
+        },
+        {
+            "title": "Agent-Based Reliable Task Execution in Legacy Systems",
+            "type": "Master's Thesis",
+            "year": 2026
+        },
+        {
+            "title": "Empirical evaluation of LLMs for translating C/C++ code to Rust",
+            "type": "Master's Thesis",
+            "year": 2025
+        },
+        {
+            "title": "A SLR and an Industrial Experiment on Framework Migration",
+            "type": "Master's Thesis",
+            "year": 2025,
+            "cooperation": "Münchener Verein"
+        },
+        {
+            "title": "Evaluating and Improving the Effectiveness of an AI-assisted tutoring system",
+            "type": "Master's Thesis",
+            "year": 2025
+        },
+        {
+            "title": "Improving the Efficiency of an AI-assisted tutoring system",
+            "type": "Master's Thesis",
+            "year": 2025
+        },
+        {
+            "title": "Comparative Analysis of LLMs for Code Refactoring",
+            "type": "Master's Thesis",
+            "year": 2025,
+            "note": "with RW"
+        }
+    ]
+}
