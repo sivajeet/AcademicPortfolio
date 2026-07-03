@@ -231,6 +231,15 @@ async function loadBlogs() {
 }
 
 async function loadContentData() {
+    const hasHomepageSections = document.getElementById('news')
+        || document.getElementById('publications')
+        || document.getElementById('teaching')
+        || document.getElementById('presentations');
+
+    if (!hasHomepageSections) {
+        return;
+    }
+
     try {
         const [newsData, journalsData, conferencesData, teachingData, thesisData, presData] = await Promise.all([
             fetchJson('data/news.json'),

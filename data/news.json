@@ -1,5 +1,13 @@
 [
     {
+        "date": "July 2026",
+        "content": "Paper titled \"DepWareTrans: Dependency-Aware Incremental Repository Migration Across Co-Executable Languages\" accepted as a full paper for presentation at the ASE Industry Showcase Track and publication in the conference proceedings."
+    },
+    {
+        "date": "July 2026",
+        "content": "Paper titled \"LegacyWorld: Atomicity-Aware Evaluation of GUI Agents for Legacy Workflows\" accepted at the ICSME Industry Track and publication in the conference proceedings."
+    },
+    {
         "date": "June 2026",
         "content": "Attended and presented at EASE 2026 on DSL Code Generation with LLMs."
     },
