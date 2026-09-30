@@ -199,6 +199,58 @@ function renderPresentations(presData) {
     });
 }
 
+function renderService(serviceData) {
+    const serviceSection = document.getElementById('service');
+    if (!serviceSection) return;
+
+    const serviceList = serviceSection.querySelector('#service-list') || document.createElement('div');
+    serviceList.innerHTML = '';
+
+    serviceData.forEach(group => {
+        const groupBlock = document.createElement('div');
+        groupBlock.style.marginBottom = '1.5rem';
+
+        const heading = document.createElement('h3');
+        heading.textContent = group.category;
+        groupBlock.appendChild(heading);
+
+        const list = document.createElement('ul');
+        list.style.paddingLeft = '1.2rem';
+        list.style.marginBottom = '0';
+
+        (group.items || []).forEach(item => {
+            const li = document.createElement('li');
+            li.style.marginBottom = '0.75rem';
+            const parts = [];
+            if (item.year) {
+                parts.push(`(${escapeHtml(item.year)})`);
+            }
+            if (item.event) {
+                parts.push(escapeHtml(item.event));
+            }
+            if (item.role) {
+                parts.push(escapeHtml(item.role));
+            }
+            if (item.note) {
+                parts.push(escapeHtml(item.note));
+            }
+            if (item.link) {
+                li.innerHTML = `${parts.join(' — ')}. <a href="${item.link}" target="_blank" rel="noopener noreferrer">Link</a>`;
+            } else {
+                li.innerHTML = `${parts.join(' — ')}.`;
+            }
+            list.appendChild(li);
+        });
+
+        groupBlock.appendChild(list);
+        serviceList.appendChild(groupBlock);
+    });
+
+    if (!serviceSection.contains(serviceList)) {
+        serviceSection.appendChild(serviceList);
+    }
+}
+
 async function loadBlogs() {
     const blogList = document.getElementById('blog-list');
     if (!blogList) return;
@@ -234,26 +286,29 @@ async function loadContentData() {
     const hasHomepageSections = document.getElementById('news')
         || document.getElementById('publications')
         || document.getElementById('teaching')
-        || document.getElementById('presentations');
+        || document.getElementById('presentations')
+        || document.getElementById('service');
 
     if (!hasHomepageSections) {
         return;
     }
 
     try {
-        const [newsData, journalsData, conferencesData, teachingData, thesisData, presData] = await Promise.all([
+        const [newsData, journalsData, conferencesData, teachingData, thesisData, presData, serviceData] = await Promise.all([
             fetchJson('data/news.json'),
             fetchJson('data/publications-journals.json'),
             fetchJson('data/publications-conferences.json'),
             fetchJson('data/teaching.json'),
             fetchJson('data/thesis.json'),
-            fetchJson('data/presentations.json')
+            fetchJson('data/presentations.json'),
+            fetchJson('data/service.json')
         ]);
 
         renderNews(newsData);
         renderPublications(journalsData, conferencesData);
         renderTeaching(teachingData, thesisData);
         renderPresentations(presData);
+        renderService(serviceData);
     } catch (error) {
         console.error('Error loading content:', error);
     }

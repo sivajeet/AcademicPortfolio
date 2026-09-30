@@ -244,6 +244,20 @@ p {
     font-size: 0.95rem;
 }
 
+/* Service */
+#service-list h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+#service-list ul {
+    margin-bottom: 0;
+}
+
+#service-list li strong {
+    color: var(--heading-color);
+}
+
 .watch-link {
     display: inline-block;
     margin-top: 0.3rem;

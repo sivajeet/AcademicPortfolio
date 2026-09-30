@@ -1,0 +1,31 @@
+[
+    {
+        "category": "Conference and workshop program committees",
+        "items": [
+            {
+                "year": 2027,
+                "role": "Committee Member in Program Committee",
+                "event": "AIPerf",
+                "link": "https://conf.researchr.org/committee/aiperf-2027/aiperf-2027-papers-program-committee"
+            },
+            {
+                "year": 2026,
+                "role": "Committee Member in Program Committee",
+                "event": "ASYDE",
+                "link": "https://conf.researchr.org/committee/ase-2026/asyde-2026-papers-program-committee"
+            },
+            {
+                "year": 2026,
+                "role": "PC Member in Program Committee",
+                "event": "SCAM 2026 - Engineering Track",
+                "link": "https://conf.researchr.org/committee/scam-2026/scam-2026-engineering-track-program-committee"
+            },
+            {
+                "year": 2026,
+                "role": "Committee Member in Program Committee",
+                "event": "SCAM 2026 - Research Track",
+                "link": "https://conf.researchr.org/committee/scam-2026/scam-2026-research-track-program-committee"
+            }
+        ]
+    }
+]

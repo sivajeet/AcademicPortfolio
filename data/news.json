@@ -1,6 +1,10 @@
 [
     {
         "date": "July 2026",
+        "content": "Paper titled \"Why Industry Migrates and When It Trusts LLMs: A Practitioner Survey on LLM-Assisted Software Migration\" accepted for presentation at ESEM 2026."
+    },
+    {
+        "date": "July 2026",
         "content": "Paper titled \"DepWareTrans: Dependency-Aware Incremental Repository Migration Across Co-Executable Languages\" accepted as a full paper for presentation at the ASE Industry Showcase Track and publication in the conference proceedings."
     },
     {
@@ -9,15 +13,7 @@
     },
     {
         "date": "June 2026",
-        "content": "Attended and presented at EASE 2026 on DSL Code Generation with LLMs."
-    },
-    {
-        "date": "May, 2026",
-        "content": "Paper titled \"Cross-Language Semantic Clone Detection with Instruction Fine-Tuned LLMs\" accepted as a full paper for presentation at SEAA 2026 and publication in the conference proceedings."
-    },
-    {
-        "date": "April, 2026",
-        "content": "Notification of acceptance for paper on DSL Code Generation at EASE conference."
+        "content": "Presented \"Leveraging LLMs for Multi-File DSL Code Generation: An Industrial Case Study\" at EASE 2026."
     },
     {
         "date": "November 2025",
