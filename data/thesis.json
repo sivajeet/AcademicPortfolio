@@ -51,9 +51,7 @@
         },
         {
             "title": "Comparative Analysis of LLMs for Code Refactoring",
-            "type": "Master's Thesis",
-            "year": 2025,
-            "note": "with RW"
+            "year": 2025
         }
     ]
 }

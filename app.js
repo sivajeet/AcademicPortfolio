@@ -29,7 +29,7 @@ function escapeHtml(value) {
 }
 
 async function fetchJson(path) {
-    const response = await fetch(path);
+    const response = await fetch(path, { cache: 'no-store' });
     if (!response.ok) {
         throw new Error(`Could not load ${path}`);
     }
@@ -46,7 +46,7 @@ function renderNews(newsData) {
     newsData.forEach(item => {
         const newsItem = document.createElement('div');
         newsItem.className = 'news-item';
-        newsItem.innerHTML = `<span class="news-date">${escapeHtml(item.date)}:</span> ${item.content}`;
+        newsItem.innerHTML = `<span class="news-date">${escapeHtml(item.date)}:</span><div class="news-content">${item.content}</div>`;
         newsContainer.appendChild(newsItem);
     });
 
@@ -146,14 +146,17 @@ function renderTeaching(teachingData, thesisData) {
         if (thesis.year) {
             html += `(${escapeHtml(thesis.year)}) `;
         }
-        html += `${escapeHtml(thesis.title)} <span class="thesis-type">(${escapeHtml(thesis.type)}`;
-        if (thesis.cooperation) {
-            html += ` - in cooperation with ${escapeHtml(thesis.cooperation)}`;
+        html += escapeHtml(thesis.title);
+        if (thesis.type) {
+            html += ` <span class="thesis-type">(${escapeHtml(thesis.type)}`;
+            if (thesis.cooperation) {
+                html += ` - in cooperation with ${escapeHtml(thesis.cooperation)}`;
+            }
+            if (thesis.note) {
+                html += ` ${escapeHtml(thesis.note)}`;
+            }
+            html += `)</span>`;
         }
-        if (thesis.note) {
-            html += ` ${escapeHtml(thesis.note)}`;
-        }
-        html += `)</span>`;
         li.innerHTML = html;
         completedList.appendChild(li);
     });
@@ -235,9 +238,9 @@ function renderService(serviceData) {
                 parts.push(escapeHtml(item.note));
             }
             if (item.link) {
-                li.innerHTML = `${parts.join(' — ')}. <a href="${item.link}" target="_blank" rel="noopener noreferrer">Link</a>`;
+                li.innerHTML = `${parts.join(', ')}. <a href="${item.link}" target="_blank" rel="noopener noreferrer">Link</a>`;
             } else {
-                li.innerHTML = `${parts.join(' — ')}.`;
+                li.innerHTML = `${parts.join(', ')}.`;
             }
             list.appendChild(li);
         });

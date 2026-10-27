@@ -3,31 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sivajeet Chand</title>
+    <title>Sivajeet Chand — AI & Software Engineering Research</title>
+    <meta name="description" content="Sivajeet Chand, PhD researcher at TU Munich. Exploring large language models for software migration and modernization.">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="version2-page">
-  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-    <span id="theme-icon">🌙</span>
-  </button>
-
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="page-shell">
-    <header>
-      <div class="profile-image">
-        <img src="myimage.png" alt="Photo of Sivajeet Chand">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="wordmark" href="#" aria-label="Sivajeet Chand home">sc<span>.</span></a>
+      <div class="nav-links"><a href="#research">Research</a><a href="#publications">Publications</a><a href="#teaching">Teaching</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle color theme"><span id="theme-icon">🌙</span></button>
+    </nav>
+    <main id="main">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">SOFTWARE ENGINEERING × GENERATIVE AI</p>
+        <h1>I’m Sivajeet, a researcher at <a href="https://www.tum.de/en" target="_blank" rel="noopener noreferrer">TU Munich.</a> I explore how AI can help software evolve.</h1>
+        <p class="hero-description">My PhD research focuses on large language models for code migration and modernization.</p>
+        <p class="hero-history">Previously at <span>Volvo Group</span> · MSc, <span>Chalmers</span></p>
+        <div class="hero-actions"><a class="primary-link" href="#research">Explore my research <span aria-hidden="true">↗</span></a><a href="https://scholar.google.com/citations?user=lOAQn_UAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div>
       </div>
-      <div class="header-content">
-        <h1>Sivajeet Chand</h1>
-        <div class="subtitle">PhD Researcher, Technical University of Munich</div>
-        <div class="subtitle">Chair of Software & Systems Engineering</div>
-        <div class="contact-links">
-          <a href="mailto:sivajeet.chand@tum.de">sivajeet.chand@tum.de</a> |
-          <a href="https://scholar.google.com/citations?user=lOAQn_UAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a> |
-          <a href="https://www.linkedin.com/in/sivajeetchand/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
-          <a href="https://github.com/sivajeet" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </div>
-      </div>
+      <div class="portrait-wrap"><div class="profile-image"><img src="myimage.png" alt="Sivajeet Chand" fetchpriority="high"></div><p>PhD Researcher · Munich, Germany</p></div>
     </header>
+    <section id="research">
+      <div class="section-heading"><div><p class="eyebrow">SELECTED RESEARCH</p><h2>Helping software move forward.</h2></div><a href="#publications">All publications ↗</a></div>
+      <div class="research-grid">
+        <a class="research-card peach" href="https://mediatum.ub.tum.de/doc/1858822/q0bvrfunsdf89omvibim58j26.pdf" target="_blank" rel="noopener noreferrer">
+          <div class="card-meta">SOFTWARE MIGRATION <span>ASE ’26</span></div><h3>DepWareTrans</h3><p>Dependency-aware, incremental repository migration across co-executable languages.</p><span class="card-link">Read the paper ↗</span>
+          <div class="migration-visual" aria-hidden="true"><div class="code-window"><div class="window-dots">● ● ●</div><span class="code-label">SOURCE REPOSITORY</span><div class="code-line long"></div><div class="code-line short"></div><div class="code-line"></div><div class="code-line short"></div><div class="module-label">Module A <span>→</span> Module B</div></div><div class="migration-arrow">↘</div><div class="target-module">↳ <span>Migrate incrementally</span> ✓</div></div>
+        </a>
+        <a class="research-card lavender" href="https://mediatum.ub.tum.de/doc/1858482/38xfysqkbqtxdxmqew3e7pueo.pdf" target="_blank" rel="noopener noreferrer">
+          <div class="card-meta">AGENT EVALUATION <span>ICSME ’26</span></div><h3>LegacyWorld</h3><p>Atomicity-aware evaluation of GUI agents for legacy workflows.</p><span class="card-link">Read the paper ↗</span>
+          <div class="workflow-visual" aria-hidden="true"><div class="workflow-top"><span>LEGACY WORKFLOW</span><span>↗</span></div><div class="workflow-step"><b>01</b><span>Observe interface</span><i>✓</i></div><div class="workflow-step"><b>02</b><span>Perform action</span><i>✓</i></div><div class="workflow-step"><b>03</b><span>Evaluate outcome</span><i>↗</i></div></div>
+        </a>
+        <a class="research-card mint" href="https://www.cs.cit.tum.de/sse/chand/" target="_blank" rel="noopener noreferrer">
+          <div class="card-meta">EMPIRICAL RESEARCH <span>ESEM ’26</span></div><h3>Migration &amp; Trust</h3><p>Why industry migrates and when it trusts LLMs: a practitioner survey on LLM-assisted software migration.</p><span class="card-link">Publication details ↗</span>
+          <div class="survey-visual" aria-hidden="true"><div class="workflow-top"><span>PRACTITIONER PERSPECTIVES</span><span>↗</span></div><div class="survey-question"><span>01</span> Why migrate?</div><div class="survey-question"><span>02</span> Where can LLMs help?</div><div class="survey-question"><span>03</span> When to trust them?</div></div>
+        </a>
+      </div>
+    </section>
+
 
     <section id="about">
       <h2>About</h2>
@@ -66,6 +82,8 @@
       <h3>Conference Proceedings</h3>
     </section>
 
+
+
     <section id="teaching">
       <h2>Teaching</h2>
       <table class="teaching-table"></table>
@@ -84,13 +102,10 @@
       </div>
     </section>
 
-    <section id="blogs">
-      <h2>Blog Posts</h2>
-      <div id="blog-list">
-        <p style="color: var(--secondary-text); font-style: italic;">Loading blog posts...</p>
-      </div>
-    </section>
 
+
+    <section id="contact" class="contact-section"><p class="eyebrow">LET’S CONNECT</p><h2>Good research starts<br>with a conversation.</h2><a class="email-link" href="mailto:sivajeet.chand@tum.de">sivajeet.chand@tum.de ↗</a><div class="contact-socials"><a href="https://scholar.google.com/citations?user=lOAQn_UAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a><a href="https://www.linkedin.com/in/sivajeetchand/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/sivajeet" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></section>
+    </main>
     <footer>
       <p>Sivajeet Chand | Technical University of Munich | Chair of Software & Systems Engineering</p>
       <p>Boltzmannstr. 3, 85748 Garching b. München, Germany</p>
