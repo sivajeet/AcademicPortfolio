@@ -8,6 +8,8 @@
         "volume": 30,
         "issue": 69,
         "link": "https://doi.org/10.1007/s10664-025-10625-1",
-        "doi": "10.1007/s10664-025-10625-1"
+        "doi": "10.1007/s10664-025-10625-1",
+        "pdf": "https://link.springer.com/content/pdf/10.1007/s10664-025-10625-1.pdf",
+        "bibtex": "@article{Pandey2025EMSE,\n  title = {Design pattern recognition: a study of large language models},\n  author = {Sushant Kumar Pandey and Sivajeet Chand and Jennifer Horkoff and Miroslaw Staron and Miroslaw Ochodek and Darko Durisic},\n  year = {2025},\n  journal = {Empirical Software Engineering},\n  volume = {30},\n  doi = {10.1007/s10664-025-10625-1},\n  eid = {69},\n  url = {https://doi.org/10.1007/s10664-025-10625-1}\n}"
     }
 ]

@@ -112,6 +112,13 @@
     </footer>
   </div>
 
+  <dialog id="citation-dialog" aria-labelledby="citation-heading">
+    <div class="citation-header"><h2 id="citation-heading">Cite this publication</h2><button type="button" class="citation-close" aria-label="Close citation">×</button></div>
+    <p id="citation-title"></p>
+    <label for="citation-bibtex">BibTeX</label>
+    <textarea id="citation-bibtex" readonly spellcheck="false"></textarea>
+    <div class="citation-footer"><button type="button" class="publication-action" id="copy-citation">Copy BibTeX</button><span id="citation-status" role="status" aria-live="polite"></span></div>
+  </dialog>
   <script src="app.js"></script>
 </body>
 </html>

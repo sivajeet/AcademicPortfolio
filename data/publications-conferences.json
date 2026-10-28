@@ -5,7 +5,10 @@
         "title": "Why Industry Migrates and When It Trusts LLMs: A Practitioner Survey on LLM-Assisted Software Migration",
         "venue": "20th International Symposium on Empirical Software Engineering and Measurement (ESEM 2026)",
         "year": 2026,
-        "link": "https://www.cs.cit.tum.de/sse/chand/"
+        "link": "https://www.cs.cit.tum.de/sse/chand/",
+        "bibtex": "@inproceedings{Chand2026ESEM26,\n  title = {Why Industry Migrates and When It Trusts LLMs: A Practitioner Survey on LLM-Assisted Software Migration},\n  author = {Sivajeet Chand and Gedeon Lenz and Partick Funke and Derui Zhu and Alexander Pretschner},\n  year = {2026},\n  booktitle = {20th International Symposium on Empirical Software Engineering and Measurement (ESEM 2026)},\n  url = {https://www.cs.cit.tum.de/sse/chand/}\n}",
+        "pdf": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol394-esem2026/LIPIcs.ESEM.2026.85/LIPIcs.ESEM.2026.85.pdf",
+        "dataset": "https://doi.org/10.6084/m9.figshare.32414763"
     },
     {
         "label": "[ASE'26]",
@@ -13,7 +16,10 @@
         "title": "DepWareTrans: Dependency-Aware Incremental Repository Migration Across Co-Executable Languages",
         "venue": "41st IEEE/ACM International Conference on Automated Software Engineering, 2026 (ASE ’26)",
         "year": 2026,
-        "link": "https://mediatum.ub.tum.de/doc/1858822/q0bvrfunsdf89omvibim58j26.pdf"
+        "link": "https://mediatum.ub.tum.de/doc/1858822/q0bvrfunsdf89omvibim58j26.pdf",
+        "pdf": "https://mediatum.ub.tum.de/doc/1858822/q0bvrfunsdf89omvibim58j26.pdf",
+        "bibtex": "@inproceedings{Chand2026ASE26,\n  title = {DepWareTrans: Dependency-Aware Incremental Repository Migration Across Co-Executable Languages},\n  author = {Sivajeet Chand and Alexander Pretschner and Steve Haupt and Derui Zhu and Sushant Kumar Pandey},\n  year = {2026},\n  booktitle = {41st IEEE/ACM International Conference on Automated Software Engineering, 2026 (ASE ’26)},\n  url = {https://mediatum.ub.tum.de/doc/1858822/q0bvrfunsdf89omvibim58j26.pdf}\n}",
+        "dataset": "https://doi.org/10.6084/m9.figshare.32133676"
     },
     {
         "label": "[ICSME'26]",
@@ -21,7 +27,9 @@
         "title": "LegacyWorld: Atomicity-Aware Evaluation of GUI Agents for Legacy Workflows",
         "venue": "42nd International Conference on Software Maintenance and Evolution, 2026 (ICSME 2026)",
         "year": 2026,
-        "link": "https://mediatum.ub.tum.de/doc/1858482/38xfysqkbqtxdxmqew3e7pueo.pdf"
+        "link": "https://mediatum.ub.tum.de/doc/1858482/38xfysqkbqtxdxmqew3e7pueo.pdf",
+        "pdf": "https://mediatum.ub.tum.de/doc/1858482/38xfysqkbqtxdxmqew3e7pueo.pdf",
+        "bibtex": "@inproceedings{Chand2026ICSME26,\n  title = {LegacyWorld: Atomicity-Aware Evaluation of GUI Agents for Legacy Workflows},\n  author = {Sivajeet Chand and Thilo Reintjes and Derui Zhu and Sushant Kumar Pandey and Alexander Pretschner},\n  year = {2026},\n  booktitle = {42nd International Conference on Software Maintenance and Evolution, 2026 (ICSME 2026)},\n  url = {https://mediatum.ub.tum.de/doc/1858482/38xfysqkbqtxdxmqew3e7pueo.pdf}\n}"
     },
     {
         "label": "[EASE'26]",
@@ -29,7 +37,10 @@
         "title": "Leveraging LLMs for Multi-File DSL Code Generation: An Industrial Case Study",
         "venue": "In Proceedings of The 30th International Conference on Evaluation and Assessment in Software Engineering (EASE 2026)",
         "year": 2026,
-        "link": "https://arxiv.org/pdf/2604.24678"
+        "link": "https://arxiv.org/pdf/2604.24678",
+        "pdf": "https://arxiv.org/pdf/2604.24678",
+        "bibtex": "@inproceedings{Chand2026EASE26,\n  title = {Leveraging LLMs for Multi-File DSL Code Generation: An Industrial Case Study},\n  author = {Sivajeet Chand and Kevin Nyugen and Peter Kuntz and Alexander Pretschner},\n  year = {2026},\n  booktitle = {In Proceedings of The 30th International Conference on Evaluation and Assessment in Software Engineering (EASE 2026)},\n  url = {https://arxiv.org/pdf/2604.24678}\n}",
+        "dataset": "https://doi.org/10.6084/m9.figshare.31423292"
     },
     {
         "label": "[AIware'25]",
@@ -37,7 +48,10 @@
         "title": "Automated Extract Method Refactoring with Open-Source LLMs: A Comparative Study",
         "venue": "AIware 2025: Proceedings of the 2nd ACM International Conference on AI-Powered Software",
         "year": 2025,
-        "link": "https://2025.aiwareconf.org/track/aiware-2025-papers"
+        "link": "https://2025.aiwareconf.org/track/aiware-2025-papers",
+        "pdf": "https://mediatum.ub.tum.de/doc/1840161/hau37jokm46tfli9dj3qkjg9v.pdf",
+        "bibtex": "@inproceedings{Chand2025AIware25,\n  title = {Automated Extract Method Refactoring with Open-Source LLMs: A Comparative Study},\n  author = {Sivajeet Chand and Melih Kilic and Roland Wuersching and Sushant Kumar Pandey and Alexander Pretschner},\n  year = {2025},\n  booktitle = {AIware 2025: Proceedings of the 2nd ACM International Conference on AI-Powered Software},\n  url = {https://2025.aiwareconf.org/track/aiware-2025-papers}\n}",
+        "dataset": "https://doi.org/10.6084/m9.figshare.29645171"
     },
     {
         "label": "[PROFES'25]",
@@ -47,7 +61,9 @@
         "year": 2025,
         "pages": "506-515",
         "link": "https://doi.org/10.1007/978-3-032-12089-2_36",
-        "doi": "10.1007/978-3-032-12089-2_36"
+        "doi": "10.1007/978-3-032-12089-2_36",
+        "bibtex": "@inproceedings{Asvydyte2025PROFES25,\n  title = {How Well Small Language Models Can Be Adapted for Software Maintenance and Refactoring Tasks},\n  author = {Gabija Asvydyte and Sushant kumar Pandey and Sivajeet Chand},\n  year = {2025},\n  booktitle = {Lecture Notes in Computer Science, vol 16361. Springer, Cham (2025)},\n  pages = {506--515},\n  doi = {10.1007/978-3-032-12089-2\\_36},\n  url = {https://doi.org/10.1007/978-3-032-12089-2_36}\n}",
+        "pdf": "https://link.springer.com/chapter/10.1007/978-3-032-12089-2_36"
     },
     {
         "label": "[RE'24]",
@@ -57,7 +73,9 @@
         "year": 2024,
         "pages": "492-493",
         "link": "https://ieeexplore.ieee.org/abstract/document/10628111",
-        "doi": "10.1109/RE59750.2024.00059"
+        "doi": "10.1109/RE59067.2024.00059",
+        "bibtex": "@inproceedings{Chand2024RE24,\n  title = {Automating Requirements Review in the Automotive Sector: A Tailored AI Approach},\n  author = {Sivajeet Chand and Chang Li and CM Montes and B Cabrero-Daniel and J Horkoff},\n  year = {2024},\n  booktitle = {2024 IEEE 32nd International Requirements Engineering Conference (RE)},\n  pages = {492--493},\n  doi = {10.1109/RE59067.2024.00059},\n  url = {https://ieeexplore.ieee.org/abstract/document/10628111}\n}",
+        "pdf": "https://ieeexplore.ieee.org/document/10628111"
     },
     {
         "label": "[PROMISE'23]",
@@ -67,7 +85,9 @@
         "year": 2023,
         "pages": "44-48",
         "link": "https://dl.acm.org/doi/pdf/10.1145/3617555.3617873",
-        "doi": "10.1145/3617555.3617873"
+        "doi": "10.1145/3617555.3617873",
+        "pdf": "https://dl.acm.org/doi/pdf/10.1145/3617555.3617873",
+        "bibtex": "@inproceedings{Chand2023PROMISE23,\n  title = {Comparing Word-Based and AST-Based Models for Design Pattern Recognition},\n  author = {Sivajeet Chand and Sushant Kumar Pandey and Jennifer Horkoff and Miroslaw Staron and Miroslaw Ochodek and Darko Durisic},\n  year = {2023},\n  booktitle = {In Proceedings of the 19th International Conference on Predictive Models and Data Analytics in Software Engineering (PROMISE)},\n  pages = {44--48},\n  doi = {10.1145/3617555.3617873},\n  url = {https://dl.acm.org/doi/pdf/10.1145/3617555.3617873}\n}"
     },
     {
         "label": "[PROFES'23]",
@@ -77,6 +97,8 @@
         "year": 2023,
         "pages": "301-319",
         "link": "https://link.springer.com/chapter/10.1007/978-3-031-49266-2_21",
-        "doi": "10.1007/978-3-031-49266-2_21"
+        "doi": "10.1007/978-3-031-49266-2_21",
+        "bibtex": "@inproceedings{Pandey2023PROFES23,\n  title = {Design Patterns Understanding and Use in the Automotive Industry: An Interview Study},\n  author = {Sushant Kumar Pandey and Sivajeet Chand and Jennifer Horkoff and Miroslaw Staron},\n  year = {2023},\n  booktitle = {International Conference on Product-Focused Software Process Improvement (PROFES)},\n  pages = {301--319},\n  doi = {10.1007/978-3-031-49266-2\\_21},\n  url = {https://link.springer.com/chapter/10.1007/978-3-031-49266-2_21}\n}",
+        "pdf": "https://link.springer.com/chapter/10.1007/978-3-031-49266-2_21"
     }
 ]

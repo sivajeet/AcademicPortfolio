@@ -55,6 +55,83 @@ function renderNews(newsData) {
     }
 }
 
+
+const publicationIcons = {
+    pdf: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 11v7m-3-3 3 3 3-3"/>',
+    cite: '<path d="M9 6H4v7h5v-3H6V8h3zm11 0h-5v7h5v-3h-3V8h3zM4 17h16"/>',
+    dataset: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/>'
+};
+
+function publicationIcon(name) {
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${publicationIcons[name]}</svg>`;
+}
+
+function publicationUrl(value) {
+    try {
+        const url = new URL(value);
+        return ['https:', 'http:'].includes(url.protocol) ? url.href : null;
+    } catch { return null; }
+}
+
+function appendPublicationActions(container, pub) {
+    const actions = document.createElement('div');
+    actions.className = 'publication-actions';
+    const addLink = (label, icon, url) => {
+        const link = document.createElement('a');
+        link.className = 'publication-action';
+        link.href = url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.setAttribute('aria-label', `${label} for ${pub.title} (opens in a new tab)`);
+        link.innerHTML = `${publicationIcon(icon)}<span>${label}</span>`;
+        actions.appendChild(link);
+    };
+    const pdf = publicationUrl(pub.pdf);
+    if (pdf) addLink('PDF', 'pdf', pdf);
+    else {
+        const unavailable = document.createElement('span');
+        unavailable.className = 'publication-action unavailable';
+        unavailable.innerHTML = `${publicationIcon('pdf')}<span>PDF unavailable</span>`;
+        actions.appendChild(unavailable);
+    }
+    if (pub.bibtex) {
+        const cite = document.createElement('button');
+        cite.type = 'button';
+        cite.className = 'publication-action';
+        cite.innerHTML = `${publicationIcon('cite')}<span>Cite</span>`;
+        cite.setAttribute('aria-label', `Cite ${pub.title}`);
+        cite.setAttribute('aria-haspopup', 'dialog');
+        cite.addEventListener('click', () => {
+            document.getElementById('citation-title').textContent = pub.title;
+            document.getElementById('citation-bibtex').value = pub.bibtex;
+            document.getElementById('citation-status').textContent = '';
+            document.getElementById('citation-dialog').showModal();
+        });
+        actions.appendChild(cite);
+    }
+    const dataset = publicationUrl(pub.dataset);
+    if (dataset) addLink('Dataset', 'dataset', dataset);
+    container.appendChild(actions);
+}
+
+function setupCitationDialog() {
+    const dialog = document.getElementById('citation-dialog');
+    if (!dialog) return;
+    dialog.querySelector('.citation-close').addEventListener('click', () => dialog.close());
+    document.getElementById('copy-citation').addEventListener('click', async () => {
+        const text = document.getElementById('citation-bibtex');
+        const status = document.getElementById('citation-status');
+        try {
+            await navigator.clipboard.writeText(text.value);
+            status.textContent = 'Copied!';
+        } catch {
+            text.focus();
+            text.select();
+            status.textContent = 'Copy was blocked. The BibTeX is selected; press Ctrl+C or ⌘C to copy.';
+        }
+    });
+}
+
 function renderPublications(journalsData, conferencesData) {
     const pubSection = document.getElementById('publications');
     if (!pubSection) return;
@@ -85,6 +162,7 @@ function renderPublications(journalsData, conferencesData) {
             <a href="${pub.link}" target="_blank" rel="noopener noreferrer">"${escapeHtml(pub.title)}"</a>
             <i>${escapeHtml(pub.venue)}</i>${pub.volume ? ` ${escapeHtml(pub.volume)}` : ''}${pub.issue ? `, ${escapeHtml(pub.issue)}` : ''}${pub.year ? ` (${escapeHtml(pub.year)})` : ''}.${pub.doi ? ` DOI: ${escapeHtml(pub.doi)}` : ''}
         `;
+        appendPublicationActions(pubItem, pub);
         journalsH3.parentElement.insertBefore(pubItem, journalsH3.nextElementSibling);
     });
 
@@ -101,6 +179,7 @@ function renderPublications(journalsData, conferencesData) {
             <a href="${pub.link}" target="_blank" rel="noopener noreferrer">"${escapeHtml(pub.title)}"</a>
             In <i>${escapeHtml(pub.venue)}</i>${pub.pages ? `, ${escapeHtml(pub.pages)}` : ''}${pub.year ? `, ${escapeHtml(pub.year)}` : ''}.${pub.doi ? ` DOI: ${escapeHtml(pub.doi)}` : ''}
         `;
+        appendPublicationActions(pubItem, pub);
         lastInsertedElement.parentElement.insertBefore(pubItem, lastInsertedElement.nextElementSibling);
         lastInsertedElement = pubItem;
     });
@@ -319,6 +398,7 @@ async function loadContentData() {
 
 document.addEventListener('DOMContentLoaded', () => {
     setTheme(getTheme());
+    setupCitationDialog();
     loadContentData();
     loadBlogs();
 });

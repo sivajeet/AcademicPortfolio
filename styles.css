@@ -646,3 +646,22 @@ footer { font-size:13px; }
     border:0;
     font-weight:600;
 }
+
+.publication-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
+.publication-action { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:7px 11px; min-height:40px; font:500 14px/1.4 Arial, sans-serif; color:var(--link-color); background:transparent; border:1px solid var(--border-color); border-radius:6px; cursor:pointer; text-decoration:none; }
+.publication-action svg { width:18px; height:18px; flex-shrink:0; }
+.publication-action:hover { background:var(--light-border); text-decoration:none; }
+.publication-action.unavailable { color:var(--secondary-text); border-color:var(--light-border); cursor:default; }
+#citation-dialog { width:min(760px,calc(100% - 32px)); max-height:85dvh; margin:auto; padding:28px; border:1px solid var(--border-color); border-radius:12px; background:var(--bg-color); color:var(--text-color); box-shadow:0 24px 80px #0005; }
+#citation-dialog::backdrop { background:#0009; }
+.citation-header { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.citation-header h2 { font-size:24px; margin:0; }
+.citation-close { width:40px; height:40px; flex-shrink:0; border:0; background:transparent; color:var(--text-color); font-size:28px; cursor:pointer; border-radius:6px; }
+.citation-close:hover { background:var(--light-border); }
+#citation-title { margin:16px 0; color:var(--secondary-text); font-size:16px; }
+#citation-dialog label { display:block; margin:0 0 8px; font-size:14px; font-weight:600; }
+#citation-bibtex { display:block; width:100%; height:300px; resize:vertical; padding:16px; background:var(--light-border); color:var(--text-color); border:1px solid var(--border-color); border-radius:6px; font:13px/1.7 ui-monospace,monospace; }
+#citation-bibtex:focus-visible { outline:2px solid var(--link-color); outline-offset:2px; }
+.citation-footer { display:flex; align-items:center; gap:16px; margin-top:18px; flex-wrap:wrap; }
+#citation-status { font-size:14px; color:var(--secondary-text); }
+@media(max-width:700px) { #citation-dialog { padding:20px; }.citation-header h2 { font-size:21px; } }
