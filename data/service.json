@@ -5,13 +5,19 @@
             {
                 "year": 2027,
                 "role": "Committee Member in Program Committee",
-                "event": "AIPerf",
+                "event": "AIPerf workshop",
                 "link": "https://conf.researchr.org/committee/aiperf-2027/aiperf-2027-papers-program-committee"
+            },
+            {
+                "year": 2027,
+                "role": "Committee Member in Program Committee",
+                "event": "ISSRE - Research Track",
+                "link": "https://conf.researchr.org/committee/issre-2027/issre-2027-papers-program-committee"
             },
             {
                 "year": 2026,
                 "role": "Committee Member in Program Committee",
-                "event": "ASYDE",
+                "event": "ASYDE workshop",
                 "link": "https://conf.researchr.org/committee/ase-2026/asyde-2026-papers-program-committee"
             },
             {

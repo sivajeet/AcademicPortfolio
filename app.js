@@ -83,7 +83,8 @@ const publicationIcons = {
     cite: '<path d="M9 6H4v7h5v-3H6V8h3zm11 0h-5v7h5v-3h-3V8h3zM4 17h16"/>',
     dataset: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/>',
     slides: '<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3M7 9h10M7 13h6"/>',
-    recording: '<circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/>'
+    recording: '<circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/>',
+    external: '<path d="M14 4h6v6M20 4l-9 9"/><path d="M20 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6"/>'
 };
 
 function publicationIcon(name) {
@@ -381,11 +382,24 @@ function renderService(serviceData) {
             if (item.note) {
                 parts.push(escapeHtml(item.note));
             }
-            if (item.link) {
-                li.innerHTML = `${parts.join(', ')}. <a href="${item.link}" target="_blank" rel="noopener noreferrer">Link</a>`;
-            } else {
-                li.innerHTML = `${parts.join(', ')}.`;
+            const entry = document.createElement('div');
+            entry.className = 'service-entry';
+            const description = document.createElement('span');
+            description.innerHTML = `${parts.join(', ')}.`;
+            entry.appendChild(description);
+            const url = publicationUrl(item.link);
+            if (url) {
+                const link = document.createElement('a');
+                link.className = 'service-action';
+                link.href = url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.setAttribute('aria-label', `View ${item.event || group.category} program committee (opens in a new tab)`);
+                link.title = 'View committee';
+                link.innerHTML = publicationIcon('external');
+                entry.appendChild(link);
             }
+            li.appendChild(entry);
             list.appendChild(li);
         });
 
