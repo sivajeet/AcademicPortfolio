@@ -1,5 +1,9 @@
 [
     {
+        "date": "November 2026",
+        "content": "Paper titled \"An Empirical Study of Large Language Models for Translating Modern C++ Features to Rust\" accepted for publication in the <a href=\"https://link.springer.com/journal/10664\" target=\"_blank\" rel=\"noopener noreferrer\"><i>Empirical Software Engineering</i> journal</a>."
+    },
+    {
         "date": "July 2026",
         "content": "Paper titled \"Why Industry Migrates and When It Trusts LLMs: A Practitioner Survey on LLM-Assisted Software Migration\" accepted for presentation at ESEM 2026."
     },
@@ -25,7 +29,7 @@
     },
     {
         "date": "January 2025",
-        "content": "Paper published in <i>Empirical Software Engineering</i> journal on design pattern recognition using large language models."
+        "content": "Paper published in <a href=\"https://link.springer.com/journal/10664\" target=\"_blank\" rel=\"noopener noreferrer\"><i>Empirical Software Engineering</i> journal</a> on design pattern recognition using large language models."
     },
     {
         "date": "July 2024",

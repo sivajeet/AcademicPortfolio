@@ -1,8 +1,33 @@
 [
     {
+        "title": "DepWareTrans: Dependency-Aware Incremental Repository Migration Across Co-Executable Languages",
+        "venue": "ASE",
+        "date": "October 2026",
+        "slidesLink": "https://tumde-my.sharepoint.com/:p:/g/personal/sivajeet_chand_tum_de/cQrFop1YQkvSR5t1FILOTy0wEgUDVzl7cIy9fbInftKTE7wSLg"
+    },
+    {
+        "title": "Why Industry Migrates and When It Trusts LLMs: A Practitioner Survey on LLM-Assisted Software Migration",
+        "venue": "ESEM",
+        "date": "October 2026",
+        "slidesLink": "https://tumde-my.sharepoint.com/:p:/g/personal/sivajeet_chand_tum_de/cQpSSstvx1R8QpR2TrdCt_DLEgUDWstQU_9HK-AQIGvMWEUyKQ"
+    },
+    {
+        "title": "LegacyWorld: Atomicity-Aware Evaluation of GUI Agents for Legacy Workflows",
+        "venue": "ICSME",
+        "date": "September 2026",
+        "slidesLink": "https://tumde-my.sharepoint.com/:p:/g/personal/sivajeet_chand_tum_de/cQprDj1xZIB1TqKvOggwqPzYEgUD3CYJcQljuc1NEW83ADG6Yg"
+    },
+    {
+        "title": "Cross-Language Semantic Clone Detection with Instruction Fine-Tuned LLMs",
+        "venue": "SEAA",
+        "date": "September 2026",
+        "slidesLink": "https://tumde-my.sharepoint.com/:p:/g/personal/sivajeet_chand_tum_de/cQpULbNu0pSXQqAhVqcsjNzKEgUDAKyOTIjE-tBzzoWYlndjoQ"
+    },
+    {
         "title": "Leveraging LLMs for Multi-File DSL Code Generation: An Industrial Case Study",
         "venue": "EASE",
-        "date": "June 2026"
+        "date": "June 2026",
+        "slidesLink": "https://tumde-my.sharepoint.com/:p:/g/personal/sivajeet_chand_tum_de/cQoHxsDTJryvR5438R2D9zlqEgUDoX8lpui1zjRkq3jP7PUhQg"
     },
     {
         "title": "Automated Extract Method Refactoring with Open-Source LLMs",

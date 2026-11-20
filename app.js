@@ -40,12 +40,16 @@ function renderNews(newsData) {
     const newsSection = document.getElementById('news');
     if (!newsSection) return;
 
-    const newsContainer = newsSection.querySelector('div:not(h2)') || document.createElement('div');
-    newsContainer.innerHTML = '';
+    const visibleCount = 5;
+    const newsContainer = newsSection.querySelector('#news-list') || document.createElement('div');
+    newsContainer.id = 'news-list';
+    newsContainer.replaceChildren();
+    newsSection.querySelector('.news-toggle')?.remove();
 
-    newsData.forEach(item => {
+    newsData.forEach((item, index) => {
         const newsItem = document.createElement('div');
         newsItem.className = 'news-item';
+        newsItem.hidden = index >= visibleCount;
         newsItem.innerHTML = `<span class="news-date">${escapeHtml(item.date)}:</span><div class="news-content">${item.content}</div>`;
         newsContainer.appendChild(newsItem);
     });
@@ -53,13 +57,33 @@ function renderNews(newsData) {
     if (!newsSection.contains(newsContainer)) {
         newsSection.appendChild(newsContainer);
     }
+
+    if (newsData.length > visibleCount) {
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'news-toggle';
+        toggle.setAttribute('aria-controls', 'news-list');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = `Show ${newsData.length - visibleCount} more news`;
+        toggle.addEventListener('click', () => {
+            const expanded = toggle.getAttribute('aria-expanded') !== 'true';
+            Array.from(newsContainer.children).slice(visibleCount).forEach(item => {
+                item.hidden = !expanded;
+            });
+            toggle.setAttribute('aria-expanded', String(expanded));
+            toggle.textContent = expanded ? 'Show fewer news' : `Show ${newsData.length - visibleCount} more news`;
+        });
+        newsSection.appendChild(toggle);
+    }
 }
 
 
 const publicationIcons = {
     pdf: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 11v7m-3-3 3 3 3-3"/>',
     cite: '<path d="M9 6H4v7h5v-3H6V8h3zm11 0h-5v7h5v-3h-3V8h3zM4 17h16"/>',
-    dataset: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/>'
+    dataset: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/>',
+    slides: '<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3M7 9h10M7 13h6"/>',
+    recording: '<circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/>'
 };
 
 function publicationIcon(name) {
@@ -83,7 +107,8 @@ function appendPublicationActions(container, pub) {
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
         link.setAttribute('aria-label', `${label} for ${pub.title} (opens in a new tab)`);
-        link.innerHTML = `${publicationIcon(icon)}<span>${label}</span>`;
+        link.title = label;
+        link.innerHTML = publicationIcon(icon);
         actions.appendChild(link);
     };
     const pdf = publicationUrl(pub.pdf);
@@ -91,16 +116,20 @@ function appendPublicationActions(container, pub) {
     else {
         const unavailable = document.createElement('span');
         unavailable.className = 'publication-action unavailable';
-        unavailable.innerHTML = `${publicationIcon('pdf')}<span>PDF unavailable</span>`;
+        unavailable.setAttribute('role', 'img');
+        unavailable.setAttribute('aria-label', `PDF unavailable for ${pub.title}`);
+        unavailable.title = 'PDF unavailable';
+        unavailable.innerHTML = publicationIcon('pdf');
         actions.appendChild(unavailable);
     }
     if (pub.bibtex) {
         const cite = document.createElement('button');
         cite.type = 'button';
         cite.className = 'publication-action';
-        cite.innerHTML = `${publicationIcon('cite')}<span>Cite</span>`;
+        cite.innerHTML = publicationIcon('cite');
         cite.setAttribute('aria-label', `Cite ${pub.title}`);
         cite.setAttribute('aria-haspopup', 'dialog');
+        cite.title = 'Cite';
         cite.addEventListener('click', () => {
             document.getElementById('citation-title').textContent = pub.title;
             document.getElementById('citation-bibtex').value = pub.bibtex;
@@ -152,18 +181,27 @@ function renderPublications(journalsData, conferencesData) {
         nextElement = conferencesH3.nextElementSibling;
     }
 
+    let lastInsertedJournal = journalsH3;
     journalsData.forEach(pub => {
         const pubItem = document.createElement('div');
         pubItem.className = 'pub-item';
+        const details = document.createElement('div');
+        details.className = 'publication-details';
         const rawLabel = pub.label || '';
         const cleanLabel = rawLabel.replace(/^\[|\]$/g, '');
-        pubItem.innerHTML = `
-            <span class="pub-venue-badge">${escapeHtml(cleanLabel)}</span> ${escapeHtml(pub.authors)}.
-            <a href="${pub.link}" target="_blank" rel="noopener noreferrer">"${escapeHtml(pub.title)}"</a>
-            <i>${escapeHtml(pub.venue)}</i>${pub.volume ? ` ${escapeHtml(pub.volume)}` : ''}${pub.issue ? `, ${escapeHtml(pub.issue)}` : ''}${pub.year ? ` (${escapeHtml(pub.year)})` : ''}.${pub.doi ? ` DOI: ${escapeHtml(pub.doi)}` : ''}
+        const authors = pub.authors ? `${escapeHtml(pub.authors)}. ` : '';
+        const title = publicationUrl(pub.link)
+            ? `<a class="pub-title" href="${escapeHtml(pub.link)}" target="_blank" rel="noopener noreferrer">"${escapeHtml(pub.title)}"</a>`
+            : `<span class="pub-title">"${escapeHtml(pub.title)}"</span>`;
+        details.innerHTML = `
+            <span class="pub-venue-badge">${escapeHtml(cleanLabel)}</span> ${authors}
+            ${title}
+            <i>${escapeHtml(pub.venue)}</i>${pub.volume ? ` ${escapeHtml(pub.volume)}` : ''}${pub.issue ? `, ${escapeHtml(pub.issue)}` : ''}${pub.year ? ` (${escapeHtml(pub.year)})` : ''}${pub.status ? `, ${escapeHtml(pub.status)}` : ''}.${pub.doi ? ` DOI: ${escapeHtml(pub.doi)}` : ''}
         `;
+        pubItem.appendChild(details);
         appendPublicationActions(pubItem, pub);
-        journalsH3.parentElement.insertBefore(pubItem, journalsH3.nextElementSibling);
+        lastInsertedJournal.parentElement.insertBefore(pubItem, lastInsertedJournal.nextElementSibling);
+        lastInsertedJournal = pubItem;
     });
 
     const sortedConferences = [...conferencesData].sort((a, b) => (b.year || 0) - (a.year || 0));
@@ -172,13 +210,16 @@ function renderPublications(journalsData, conferencesData) {
     sortedConferences.forEach(pub => {
         const pubItem = document.createElement('div');
         pubItem.className = 'pub-item';
+        const details = document.createElement('div');
+        details.className = 'publication-details';
         const rawLabel = pub.label || '';
         const cleanLabel = rawLabel.replace(/^\[|\]$/g, '');
-        pubItem.innerHTML = `
+        details.innerHTML = `
             <span class="pub-venue-badge">${escapeHtml(cleanLabel)}</span> ${escapeHtml(pub.authors)}.
-            <a href="${pub.link}" target="_blank" rel="noopener noreferrer">"${escapeHtml(pub.title)}"</a>
+            <a class="pub-title" href="${pub.link}" target="_blank" rel="noopener noreferrer">"${escapeHtml(pub.title)}"</a>
             In <i>${escapeHtml(pub.venue)}</i>${pub.pages ? `, ${escapeHtml(pub.pages)}` : ''}${pub.year ? `, ${escapeHtml(pub.year)}` : ''}.${pub.doi ? ` DOI: ${escapeHtml(pub.doi)}` : ''}
         `;
+        pubItem.appendChild(details);
         appendPublicationActions(pubItem, pub);
         lastInsertedElement.parentElement.insertBefore(pubItem, lastInsertedElement.nextElementSibling);
         lastInsertedElement = pubItem;
@@ -272,11 +313,35 @@ function renderPresentations(presData) {
     presData.forEach(pres => {
         const presItem = document.createElement('div');
         presItem.className = 'pres-item';
-        presItem.innerHTML = `
+        const details = document.createElement('div');
+        details.className = 'presentation-details';
+        details.innerHTML = `
             <div class="pres-title">${escapeHtml(pres.title)}</div>
             <div class="pres-details">${escapeHtml(pres.venue)}, ${escapeHtml(pres.date)}</div>
-            ${pres.recordingLink ? `<a href="${pres.recordingLink}" class="watch-link" target="_blank" rel="noopener noreferrer">[Watch Recording]</a>` : ''}
         `;
+        presItem.appendChild(details);
+
+        const actions = document.createElement('div');
+        actions.className = 'presentation-actions';
+        const addAction = (label, icon, url) => {
+            const link = document.createElement('a');
+            link.className = 'presentation-action';
+            link.href = url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.setAttribute('aria-label', `${label} for ${pres.title} (opens in a new tab)`);
+            link.title = label;
+            link.innerHTML = publicationIcon(icon);
+            actions.appendChild(link);
+        };
+        const slides = publicationUrl(pres.slidesLink);
+        if (slides) addAction('View slides', 'slides', slides);
+        const recording = publicationUrl(pres.recordingLink);
+        if (recording) addAction('Watch recording', 'recording', recording);
+        if (actions.childElementCount) {
+            presItem.classList.add('has-actions');
+            presItem.appendChild(actions);
+        }
         container.appendChild(presItem);
     });
 }

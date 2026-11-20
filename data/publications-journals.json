@@ -1,6 +1,16 @@
 [
     {
         "label": "[EMSE]",
+        "authors": "Sivajeet Chand, Aleksandr Balakirev, Sushant Kumar Pandey, Derui Zhu, and Alexander Pretschner",
+        "title": "An Empirical Study of Large Language Models for Translating Modern C++ Features to Rust",
+        "venue": "Empirical Software Engineering journal",
+        "status": "Accepted",
+        "link": "",
+        "pdf": "",
+        "dataset": ""
+    },
+    {
+        "label": "[EMSE]",
         "authors": "Sushant Kumar Pandey, Sivajeet Chand, Jennifer Horkoff, Miroslaw Staron, Miroslaw Ochodek, and Darko Durisic",
         "title": "Design pattern recognition: a study of large language models.",
         "venue": "Empirical Software Engineering",
